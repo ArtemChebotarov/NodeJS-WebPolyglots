@@ -1,0 +1,33 @@
+
+<h3>All users</h3>
+<div class="row">
+    {{#if users.length}}
+
+        {{#each users}}    
+          
+                            
+            <div class="col s3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/images/userpic.png">
+                        <span class="card-title">{{name}} {{surname}}</span>
+                        <form action="/edit" method="POST">                           
+                            <button class="btn-floating halfway-fab red" type="submit">...</button>
+                            <input type="hidden" value="{{_id}}" name="id"> 
+                        </form>
+                    </div>
+                    <div class="card-content">
+                        <p>Birthday: {{birthday}}</p>
+                        <p>About: {{about}}</p>
+                    </div>
+                </div>
+            </div>
+
+            
+
+        {{/each}}
+
+    {{else}}
+        <p>No users!</p>
+    {{/if}}
+</div>

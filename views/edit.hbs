@@ -1,0 +1,48 @@
+<h3>Edit user</h3>
+<form action="/edited" method="POST">
+    <input type="hidden" value="{{id}}" name="id"> 
+    
+    <div class="row">
+        <div class="col s8">
+            
+                <label for="name">Name</label>
+                <input type="text" name="name" class="validate" required maxlength="50" minlength="1" value="{{ name }}">
+
+                <label for="surname">Surname</label>
+                <input type="text" name="surname" class="validate" required maxlength="50" minlength="1" value="{{ surname }}">
+
+                <label for="birthday">Birthday</label>
+                <input type="text" name="birthday" class="datepicker" required value="{{ birthday }}">
+
+                <label for="about">About</label>
+                <input type="text" name="about" class="validate" required maxlength="50" minlength="1" value="{{ about }}">
+            
+        </div>
+        <div class="col s4">
+            <div class="right-align">
+                <img src="/images/userpic.png">
+            </div>
+        </div>
+    </div>
+    <div class="center-align"><h5>Languages</h5></div>
+    <div class="row">
+        {{#each langsOut}}
+            <div class="col s6"><input type="text" name="lng" value="{{lng}}" readonly></div>  
+            <div class="col s6"><input type="text" name="lvl" value="{{lvl}}" readonly></div>
+        {{/each}}
+    </div>
+    
+    <div class="row">
+        <div class="center-align">
+            <button type="submit" class="btn" >Edit</button>
+            <button type="submit" class="btn" formaction="/delete">Delete</button>
+        </div>
+    </div>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    const Calendar = document.querySelector('.datepicker')
+
+    M.Datepicker.init(Calendar, {format: 'dd.mm.yyyy'})
+</script>

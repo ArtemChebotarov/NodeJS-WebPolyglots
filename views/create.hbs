@@ -1,0 +1,95 @@
+ <form action="/create" method="POST">
+    <h3>Create user</h3>
+    <div class="row">
+        <div class="input-field">
+            <div class="col s6">
+                <input type="text" name="name" class="validate" required maxlength="50" minlength="1">
+                <label>Name</label>
+            </div>
+            <div class="col s6">
+                <input type="text" name="surname" class="validate" required maxlength="50" minlength="1">
+                <label>Surname</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field">    
+            <div class="col s6">
+                <input type="date" name="birthday" required max="2020-01-15">
+                <label>Birthday</label>
+            </div>
+            <div class="col s6">
+                <input type="text" name="about" class="validate" required maxlength="50" minlength="5">
+                <label>About</label>
+            </div>
+
+        </div>
+    </div>
+    <div class="row" id="langs"></div>
+    <div class="row" id="chooseLang">
+        <div class="input-field col s6">
+            <select id="lang">
+                <option value="" disabled selected>Choose language you know</option>
+                {{#each languages}}
+                    <option>{{ language }}</option>
+                {{/each}}
+            </select>
+            <label>Language</label>
+        </div>
+        <div class="input-field col s6">
+            <select id="level"> 
+                <option value="" disabled selected>Choose your knowledge level</option>
+                {{#each levels}}
+                    <option>{{ level }}</option>
+                {{/each}}
+            </select>
+            <label>Level</label>
+        </div>
+    </div>
+    <div class="center-align">
+        <button type="button" id="addLanguage" class="btn">Add language</button>
+        <button type="submit" class="btn">Create</button>
+    </div>
+ </form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type = "text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script>
+
+
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+    
+    $("#addLanguage").click(function(){ 
+        if ($( "#lang option:selected" ).val() != "" && $( "#level option:selected" ).val() != "") { 
+            lang = $( "#lang option:selected" ).text();
+            level = $( "#level option:selected" ).text();
+
+            document.getElementById("langs").innerHTML += "<div class=\"col s6\"><input type=\"text\" name=\"lng\" value=\"" + lang + "\" readonly></div>" + 
+                "<div class=\"col s6\"><input type=\"text\" name=\"lvl\" value=\"" + level + "\" readonly></div>";
+
+            $('#lang option').each(function() {
+                if ( $(this).val() == lang ) {
+                    $(this).remove();
+                    $(document).ready(function() {
+                        $('select').material_select();
+                    });
+
+                }
+        
+        });
+        
+        }
+        
+        
+        
+        
+    });
+    
+</script>
+
+
+
+ 
